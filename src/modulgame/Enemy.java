@@ -22,17 +22,8 @@ public class Enemy extends GameObject {
     private Random rng;
     private int speed;
 
-    public Enemy(int x, int y, ID id, int num, int size, GameObject player, Random rng, int speed) 
+    public Enemy() 
     {
-        super(x, y, id, num, size);
-        this.rng = rng;
-        this.speed = speed;
-        players.add(player);
-        double dist = Math.pow((player.getX() - x), 2) + Math.pow((player.getY() - y), 2);
-        double vel = Math.sqrt(dist);
-        vel = ((vel > 0) ? vel : 1.0)/speed;
-        vel_x = (int) ((player.getX() - x) / vel);
-        vel_y = (int) ((player.getY() - y) / vel);
        
     }
 
