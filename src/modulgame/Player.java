@@ -10,13 +10,13 @@ import java.awt.Graphics;
 
 /**
  *
- * @author Fauzan
+ * @author Nenden
  */
 public class Player extends GameObject{
     
-    public Player(int x, int y, ID id, int num, int size)
-    {
-        super(x, y, id, num, size);
+    public Player(int x, int y, ID id){
+        super(x, y, id);
+        
         //speed = 1;
     }
 
