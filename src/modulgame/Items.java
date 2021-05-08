@@ -10,13 +10,14 @@ import java.awt.Graphics;
 
 /**
  *
- * @author Fauzan
+ * @author Nenden
  */
 public class Items extends GameObject {
     
-    public Items(int x, int y, ID id, int num, int size){
-        super(x, y, id, num, size);
+    public Items(int x, int y, ID id){
+        super(x, y, id);
        
+        
     }
 
     @Override
