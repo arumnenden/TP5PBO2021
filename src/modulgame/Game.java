@@ -12,6 +12,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -20,7 +21,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  *
- * @author Fauzan
+ * @author Nenden
  */
 public class Game extends Canvas implements Runnable{
     Window window;
@@ -36,6 +37,8 @@ public class Game extends Canvas implements Runnable{
     
     private Handler handler;
     
+    private String username = "";
+    
     public enum STATE{
         Game,
         GameOver
@@ -43,17 +46,19 @@ public class Game extends Canvas implements Runnable{
     
     public STATE gameState = STATE.Game;
     
-    public Game(){
+    public Game(String username){
         window = new Window(WIDTH, HEIGHT, "Modul praktikum 5", this);
         
         handler = new Handler();
-        
+        dbConnection dbcon;
         this.addKeyListener(new KeyInput(handler, this));
         
-        if(gameState == STATE.Game)
-        {
-            
-            
+        this.username = username;
+        
+        if(gameState == STATE.Game){
+            handler.addObject(new Player(200,200, ID.Player));
+            handler.addObject(new Items(100,150, ID.Item));
+            handler.addObject(new Items(200,350, ID.Item));
         }
     }
 
@@ -104,6 +109,8 @@ public class Game extends Canvas implements Runnable{
                         time--;
                     }else{
                         gameState = STATE.GameOver;
+                        dbConnection dbcon = new dbConnection();
+                        int addData = dbcon.addData(username, score);
                     }
                 }
             }
@@ -175,7 +182,11 @@ public class Game extends Canvas implements Runnable{
         g.setColor(Color.decode("#F1f3f3"));
         g.fillRect(0, 0, WIDTH, HEIGHT);
                 
-        
+        Random rand = new Random();
+        System.out.println(handler.EmptyIs());
+        if(handler.EmptyIs()){
+            handler.addObject(new Items(rand.nextInt(WIDTH),rand.nextInt(HEIGHT),ID.Item));
+        }
         
         if(gameState ==  STATE.Game){
             handler.render(g);
@@ -198,6 +209,7 @@ public class Game extends Canvas implements Runnable{
             g.drawString("GAME OVER", WIDTH/2 - 120, HEIGHT/2 - 30);
 
             currentFont = g.getFont();
+            
             Font newScoreFont = currentFont.deriveFont(currentFont.getSize() * 0.5F);
             g.setFont(newScoreFont);
 
