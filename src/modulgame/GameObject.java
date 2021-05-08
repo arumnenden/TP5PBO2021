@@ -12,29 +12,22 @@ import java.awt.Graphics;
  * @author Nenden
  */
 public abstract class GameObject {
-
     protected int x, y;
     protected ID id;
-    protected double vel_x;
-    protected double vel_y;
+    protected int vel_x;
+    protected int vel_y;
     protected int num;
     protected int size;
-
-    public GameObject(int x, int y, ID id, int num, int size) {
+    
+    public GameObject(int x, int y, ID id){
         this.x = x;
         this.y = y;
         this.id = id;
-        this.num = num;
-        this.size = size;
     }
-
+    
+    
     public abstract void tick();
-
     public abstract void render(Graphics g);
-
-    public int getSize() {
-        return size;
-    }
 
     public int getX() {
         return x;
@@ -60,28 +53,22 @@ public abstract class GameObject {
         this.id = id;
     }
 
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
-    }
-
-    public double getVel_x() {
+    public int getVel_x() {
         return vel_x;
     }
 
-    public void setVel_x(double vel_x) {
+    public void setVel_x(int vel_x) {
         this.vel_x = vel_x;
     }
 
-    public double getVel_y() {
+    public int getVel_y() {
         return vel_y;
     }
 
-    public void setVel_y(double vel_y) {
+    public void setVel_y(int vel_y) {
         this.vel_y = vel_y;
     }
 
+        
+    
 }
