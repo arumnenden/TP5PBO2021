@@ -4,14 +4,18 @@
  * and open the template in the editor.
  */
 package modulgame;
+import java.awt.Graphics;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 /**
  *
- * @author Fauzan
+ * @author Nenden
  */
 public class dbConnection {
     public static Connection con;
@@ -38,7 +42,7 @@ public class dbConnection {
             Object[] column = {"No", "Username", "Score"};
             connect();
             dataTabel = new DefaultTableModel(null, column);
-            String sql = "Select * from highscore";
+            String sql = "SELECT * FROM highscore ORDER BY Score DESC";
             ResultSet res = stm.executeQuery(sql);
             
             int no = 1;
@@ -55,5 +59,17 @@ public class dbConnection {
         }
         
         return dataTabel;
+    }
+    
+    int addData(String user, int score){
+        connect();
+        String query = "INSERT INTO highscore" + " (Username, Score) VALUES ('" + user + "', '" + score + "');";
+        try {
+            int ex = stm.executeUpdate(query);
+            return ex;
+        } catch (SQLException ex1) {
+            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex1);
+        }
+        return 0;
     }
 }
