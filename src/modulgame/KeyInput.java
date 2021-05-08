@@ -11,7 +11,7 @@ import modulgame.Game.STATE;
 
 /**
  *
- * @author Fauzan
+ * @author Nenden
  */
 public class KeyInput extends KeyAdapter{
     
