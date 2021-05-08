@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 /**
  *
- * @author Fauzan
+ * @author Nenden
  */
 public class Handler {
     LinkedList<GameObject> object = new LinkedList<GameObject>();
@@ -35,6 +35,13 @@ public class Handler {
         this.object.add(object);
     }
     
+    /**
+     *
+     * @return
+     */
+    public boolean EmptyIs(){
+        return this.object.isEmpty();
+    }
     public void removeObject(GameObject object){
         this.object.remove(object);
     }
